@@ -1,0 +1,39 @@
+target
+*.jar
+*.war
+*.ear
+*.class
+
+# intellij config
+*.iml
+.idea/
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+bin/
+tmp/
+test-output
+work/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+projectforge-webserver/testsystem/log4j.properties
+projectforge-webserver/testsystem/logs/
+projectforge-webserver/testsystem/hibernate-search/
+projectforge-webapp/testsystem/hibernate-search/
+/log4j-dev.properties
+
+projectforge-launcher/pfconfig/
