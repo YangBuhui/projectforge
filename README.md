@@ -12,52 +12,42 @@ Please visit: http://www.projectforge.org/pf-en/Developersarewelcome
 > The other modules projectforge-* are automatically available by maven.
 
 1. Checkout:  
-   https://github.com/micromata/projectforge-webapp.git
+   https://github.com/micromata/projectforge.git
 
-2. Set the JVM memory in MAVEN_OPTS or JAVA_OPTS:  
-   ```-Xmx1024m -Xms512m -XX:PermSize=96m -XX:MaxPermSize=192m```
+2. Build ProjectForge:  
+   ```mvn clean install -DskipTests=true```
 
-3. Build ProjectForge:  
-   ```mvn -DskipTests=true install```
+3. Switch to compiled Jar file
+   ```cd projectforge-launcher/target```
 
 4. Run ProjectForge:  
-   ```mvn exec:java -Dexec.mainClass="org.projectforge.web.MyStart" -Dexec.classpathScope=test```
+   ```java -jar projectforge-launcher-X.X.X.jar -nogui```
 
-5. Your browser will be opened after start-up automatically:  
-   http://localhost:8080/ProjectForge
-
-You may build the war for your own deployement:  
-```mvn -DskipTests=true install```
-
+5. Open your browser:  
+   http://localhost:8080
 
 
 ## Quickstart with Eclipse and maven
 
-1. Configure your Eclipse environment by simply typing into the command line:  
-   ```mvn eclipse:eclipse```
+1. Launch eclipse
 
-2. Set the JVM memory in eclipse.ini or JAVA_OPTS:  
-   ```-Xmx1024m -Xms512m -XX:PermSize=96m -XX:MaxPermSize=192m```
+2. Import Maven project -> pom.xml in projectforge git root dir
 
-3. Launch Eclipse and open the project.
-
-4. Add variable M2_REPO: Eclipse -> Preferences -> Java -> Build Path -> Classpath: M2_REPO=/home/kai/.m2/repository
-
-5. Start by simply running main (in src/test/java):  
-org.projectforge.web.MyStart  
-   Add run configuration vm parameters (right mouse click) before starting:  
-     ```-Xmx1024m -Xms512m -XX:PermSize=96m -XX:MaxPermSize=192m``` 
+3. Start by simply running main (in projectforge-launcher/src/main/java):  
+   org.projectforge.launcher.PfiLauncherMain.java  
+   Add run configuration start parameters (right mouse click) before starting:  
+     ```-nogui``` 
 
 Please note the detailed documentations for administrators, developers as well as for users.
 
-Java version 1.6 is required since ProjectForge 3.4
-Please note, that the Java version 1.6 is needed for the development and the running of ProjectForge. There is no delivery for Java 1.5 planned because some third party libraries are only available for Java 1.6.
+Java version 8 is required since ProjectForge 6.0
+Please note, that the Java version 8 is needed for the development and the running of ProjectForge. There is no delivery for Java 1.5 planned because some third party libraries are only available for Java 1.6.
 
 ## Adding your own plugins
 ProjectForge support plugins. The existing menu can be modified and own entities and functionalities can be added.
 
 The menu is customizable (you can add or remove menu entries in the config.xml file).
-Deploy your plugins by adding your(r) jar(s) to the WEB-INF/lib directory. The jars contains both, the Java classes and the web pages (Wicket-pages). Nothing more is needed.
-Register your plugins in the config.xml file.
+Deploy your plugins by adding your(r) jar(s) to the plugin directory next to the jar file. In eclipse you have to add the plugin project to the run configuration classpath. The jars contains both, the Java classes and the web pages (Wicket-pages). Nothing more is needed.
+Register your plugins in the administration menu at the web gui. You need to restart the server.
 One advantage is that your own plugins are independent from new releases of the ProjectForge core system. In one of the next releases an example plugin will show you how easy it is to extend ProjectForge!
 
